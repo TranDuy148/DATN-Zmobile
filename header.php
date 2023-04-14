@@ -77,8 +77,8 @@
                                             }
                                             ?>
 
-                                            <a class="dropdown-item" href="infor.php"> thông tin tài khoản</a>
-                                            <a class="dropdown-item" href="?checkout">đăng xuất</a>
+                                            <a class="dropdown-item" href="infor.php">Thông tin tài khoản</a>
+                                            <a class="dropdown-item" href="?checkout">Đăng xuất</a>
                                             
                                         </div>
                                     </li>
@@ -88,11 +88,11 @@
                                 ?>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="" id="navbarDropdown_3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            tài khoản
+                                            Tài khoản
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                            <a class="dropdown-item" href="register.php"> đăng ký</a>
-                                            <a class="dropdown-item" href="login.php">đăng nhập</a>
+                                            <a class="dropdown-item" href="register.php">Đăng ký</a>
+                                            <a class="dropdown-item" href="login.php">Đăng nhập </a>
                                         </div>
                                     </li>
                                 <?php
