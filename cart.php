@@ -137,6 +137,7 @@
                                 <div class="product_count">
                                     <input class="input-number" type="number" name="soluong" value="<?= $item['soluong'] ?>" min="1" max="<?= $row['soluong'] ?>"/>
                                 </div>
+                                <div style="font-size:12px; color: #757575; margin-top:-5px"><?= $row['soluong'] ?> sản phẩm có sẵn</div>
                                 </td>
                                 <td>
                                 <h5><?= number_format($tong) ?>đ</h5>
