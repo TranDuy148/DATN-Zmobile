@@ -20,6 +20,7 @@ if (isset($_GET["id"])) {
         $cateid = $row['id_danhmuc'];
         $chitiet = $row['chitiet'];
         $mota =$row['mota'];
+        $soluong = $row['soluong'];
         foreach (selectAll("SELECT * FROM danhmuc WHERE id_dm={$row['id_danhmuc']}") as $item) {
             $danhmuc = $item['danhmuc'];
         }
@@ -138,10 +139,10 @@ if (isset($_GET["id"])) {
                                     </p>
                                     <form class="card_area d-flex justify-content-between align-items-center" action="" method="POST">
                                         <div class="product_count">
-                                            <span class="inumber-decrement"> <i class="ti-minus"></i></span>
+                                            <!-- <span class="inumber-decrement"> <i class="ti-minus"></i></span> -->
                                             <input type="number" hidden name="giatien" value="<?= $giatien ?>">
-                                            <input class="input-number" name="soluong" type="number" value="1" min="1" max="100" readonly>
-                                            <span class="number-increment"> <i class="ti-plus"></i></span>
+                                            <input class="input-number" name="soluong" type="number" value="1" min="1" max="<?= $soluong ?>">
+                                            <!-- <span class="number-increment"> <i class="ti-plus"></i></span> -->
                                         </div>
 
 
@@ -155,7 +156,6 @@ if (isset($_GET["id"])) {
                                                 }
                                                 else{
                                                     insert ctđơn hàng (fk là id đơn hàng mới tạo, và thông tin sản phẩm vừa thêm);
-
                                                 }
                                             } -->
 
@@ -193,7 +193,9 @@ if (isset($_GET["id"])) {
                                             }
                                         ?>
                                         <input class="btn_3" name="addcart" type="submit" value="Thêm vào giỏ hàng"/>
+                                        
                                     </form>
+                                    <div style="color: #757575; margin-top:10px"><?= $soluong ?> sản phẩm có sẵn</div>
                                 </div>
                             </div>
                         <?php

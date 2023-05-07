@@ -29,6 +29,7 @@
                 $type3 = $_FILES['anh3']['type'];
                 $chitiet = $_POST["chitiet"];
                 $mota = $_POST["mota"];
+                $soluong = $_POST["soluong"];
                 $dir = '../img/product/';
                 move_uploaded_file($tmp1, $dir . $anh1);
                 move_uploaded_file($tmp2, $dir . $anh2);
@@ -106,8 +107,11 @@
                         <input type="text" name ="bonho" required class="form-control text-light" placeholder="Nhập dung lượng bộ nhớ trong">
                       </div>
 
+                      <div class="form-group addfont">
+                        <label for="exampleInputName1">Số lượng</label>
+                        <input type="number" value="<?= $soluong ?>" name ="soluong" required class="form-control text-light" placeholder="Nhập số lượng sản phẩm hiện có">
+                      </div>
                       
-
                       <div class="form-group">
                         <label>Ảnh Sản Phẩm</label>
                         <input type="file" name="anh1" class="form-control">

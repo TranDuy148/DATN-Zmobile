@@ -50,6 +50,9 @@
     height: 230px;
 
 }
+.table:hover{
+    background-color: #ecfdff;
+}
 </style>
 
 <body>
@@ -82,6 +85,7 @@
                 $diachitaikhoan = $row['diachi'];
 
             }
+        
         ?>
             <form class="cart_inner" method="post" action="">
                 <div class="table-responsive">
@@ -136,6 +140,7 @@
                                     $idSp = $item['id_sanpham'];
                                     $tong = $item['soluong'] * $item['gia'];
                                     $tongcong = $tongcong + $tong;
+                                
                             ?>
                             <tr>
                                 <td>
@@ -160,8 +165,7 @@
                                 </td>
                                 <td>
                                 <div class="product_count">
-                                    <input class="input-number" type="number" name="soluong" value="<?= $item['soluong'] ?>" min="1" max="100"/>
-
+                                    <?= $item['soluong'] ?>
                                 </div>
                                 </td>
                                 <td>
@@ -196,6 +200,15 @@
                                     <h5><?= number_format($tongcong) ?>đ</h5>
                                 </td>
                                 <td>
+                                    <?php 
+                                        if($status ==1){
+                                    ?>
+                                    <a type="button" class="btn btn-danger btn-icon-text" href="?action=delete&id=<?= $item['id_donhang'] ?>" onclick="return confirm('Bạn có muốn hủy đơn hàng này không?')">
+                                    <i class="mdi mdi mdi-delete btn-icon-prepend"></i> Hủy</a>
+                                    <?php 
+                                        
+                                        }
+                                    ?>
                                 </td>
                             </tr>
                             <tr>
@@ -238,7 +251,7 @@
         } 
         ?>
     <?php
-    }
+        }
     ?>
     <?php
      
@@ -255,7 +268,21 @@
   <!--================login_part end =================-->
 
   <?php 
+        
         include 'footer.php';
+        switch ($_GET["action"]) {
+            case "delete":
+                        selectall("UPDATE donhang SET status=4 WHERE id={$_GET["id"]} ");
+                        selectall("UPDATE donhang SET status=4 WHERE id={$_GET["id"]} ");
+                        //tăng số lượng
+                        foreach (selectAll("SELECT * FROM ctdonhang WHERE id_donhang={$_GET['id']}") as $item){
+                          foreach (selectAll("SELECT * FROM sanpham WHERE id={$item['id_sanpham']}") as $row) {
+                            selectall("UPDATE sanpham SET soluong=soluong + {$item['soluong']} WHERE id={$row['id']} ");
+                            }
+                          }
+                        header('location:history.php?action');
+                    }
+            
     ?>
   <!-- jquery plugins here-->
   <!-- jquery -->

@@ -26,11 +26,17 @@
             case "delete":
               if (isset($_GET["id"])) {
                 if(rowCount("SELECT * FROM donhang WHERE id={$_GET['id']} && status=1 ")>0){
-                  selectall("UPDATE donhang SET status=4 WHERE id={$_GET["id"]} && status=1");
+                  selectall("UPDATE donhang SET status=4 WHERE id={$_GET["id"]} ");
                   header('location:cart.php?action');
                 }
                 else if(rowCount("SELECT * FROM donhang WHERE id={$_GET['id']} && status=2 ")>0){
-                  selectall("UPDATE donhang SET status=4 WHERE id={$_GET["id"]} && status=2");
+                  selectall("UPDATE donhang SET status=4 WHERE id={$_GET["id"]} ");
+                    //tăng số lượng
+                    foreach (selectAll("SELECT * FROM ctdonhang WHERE id_donhang={$_GET['id']}") as $item){
+                      foreach (selectAll("SELECT * FROM sanpham WHERE id={$item['id_sanpham']}") as $row) {
+                        selectall("UPDATE sanpham SET soluong=soluong + {$item['soluong']} WHERE id={$row['id']} ");
+                        }
+                      }
                   header('location:cart.php?action');
                 }
               }

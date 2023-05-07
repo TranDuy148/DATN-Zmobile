@@ -80,16 +80,15 @@
             foreach (selectAll("SELECT * FROM taikhoan WHERE taikhoan='$taikhoan'") as $row) {
                 $idtaikhoan = $row['id'];
                 $diachitaikhoan = $row['diachi'];
-
             }
         ?>
             <form class="cart_inner" method="post" action="">
                 <div class="table-responsive">
                     <a href="history.php" class="btn_1" style="float:right; margin-bottom:20px;">Lịch sử đặt hàng</a>
-
                         <?php
                          
                             if (rowCount("SELECT * FROM donhang WHERE id_taikhoan=$idtaikhoan && status=0") > 0) {
+
                                 foreach (selectAll("SELECT * FROM donhang WHERE status=0 && id_taikhoan=$id_nguoidung") as $item) {
                                     $idDh= $item['id'];
                                 }
@@ -136,8 +135,7 @@
                                 </td>
                                 <td>
                                 <div class="product_count">
-                                    <input class="input-number" type="number" name="soluong" value="<?= $item['soluong'] ?>" min="1" max="100"/>
-
+                                    <input class="input-number" type="number" name="soluong" value="<?= $item['soluong'] ?>" min="1" max="<?= $row['soluong'] ?>"/>
                                 </div>
                                 </td>
                                 <td>
@@ -146,7 +144,6 @@
                                 <td>
                                     <a class="genric-btn primary circle" href="?removeproduct=<?= $item['id_sanpham'] ?>">Xóa</a>
                                 </td>
-                                
                             </tr>
                             <?php
                                 }
@@ -224,6 +221,12 @@
             echo "<script>alert('Đặt hàng thành công')
                 location.href='product.php'
             </script>";
+            //giảm số lượng
+            foreach (selectAll("SELECT * FROM ctdonhang WHERE id_donhang=$idDh") as $item){
+                foreach (selectAll("SELECT * FROM sanpham WHERE id={$item['id_sanpham']}") as $row) {
+                    selectall("UPDATE sanpham SET soluong=soluong - {$item['soluong']} WHERE id={$row['id']} ");
+                }
+            }
         }
     ?>
   </section>
