@@ -15,6 +15,12 @@
                 }
                 else if(rowCount("SELECT * FROM donhang WHERE id={$_GET['id']} && status=2 ")>0){
                   selectall("UPDATE donhang SET status=3 WHERE id={$_GET["id"]} && status=2");
+                  //tăng số lượng đã bán
+                  foreach (selectAll("SELECT * FROM ctdonhang WHERE id_donhang={$_GET['id']}") as $item){
+                    foreach (selectAll("SELECT * FROM sanpham WHERE id={$item['id_sanpham']}") as $row) {
+                      selectall("UPDATE sanpham SET sldaban=sldaban + {$item['soluong']} WHERE id={$row['id']} ");
+                      }
+                    }
                   header('location:cart.php?action');
                 }
                 else if(rowCount("SELECT * FROM donhang WHERE id={$_GET['id']} && status=4 ")>0){

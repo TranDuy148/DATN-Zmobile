@@ -85,62 +85,54 @@
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title addfont">Thống Kê</h4>
+                    <h4 class="card-title addfont">Thống Kê Doanh Thu Theo Sản Phẩm</h4>
                     <div class="table-responsive">
                     <table class="table">
                       <thead>
                           <tr>
                               <th class="addfont" style="width: 100px">STT</th>
-                              <th class="addfont" style="width: 500px" >Họ Tên</th>
-                              <th class="addfont" style="width: 400px" >Tài Khoản (Email)</th>
-                              <th class="addfont" style="width: 300px">Loại Tài Khoản</th>
-                              <th class="addfont" style="width: 300px">Số Đơn Đã Mua</th>
-                              <th class="addfont" style="width: 300px">Tổng Tiền</th>
+                              <th class="addfont" style="width: 500px" >Tên sản phẩm</th>
+                              <th class="addfont" style="width: 400px" >Ảnh</th>
+                              <th class="addfont" style="width: 300px">Số lượng đã bán</th>
+                              <th class="addfont" style="width: 300px">Số lượng còn lại</th>
+                              <th class="addfont" style="width: 300px">Tổng doanh thu</th>
                           </tr>
                       </thead>
                       <tbody>
 
                       <?php 
-                      $stt=1;
-                      $item_per_page = !empty($_GET['per_page'])?$_GET['per_page']:8;
-                      $current_page = !empty($_GET['page'])?$_GET['page']:1;
-                      $offset = ($current_page - 1) * $item_per_page;
-                      $numrow = rowCount("SELECT * FROM taikhoan");
-                      $totalpage = ceil($numrow / $item_per_page);
-                      foreach (selectAll("SELECT * FROM donhang WHERE status=3 ORDER BY tongtien DESC LIMIT $item_per_page OFFSET $offset ") as $row) {
-                        $idtaikhoan1 = $row["id_taikhoan"];
-                      foreach (selectAll("SELECT * FROM taikhoan WHERE id = '$idtaikhoan1'") as $rows) {
-                        $numrow = rowCount("SELECT * FROM donhang WHERE status=3 && id_taikhoan = $idtaikhoan1");
+                        $stt=1;
+                        $item_per_page = !empty($_GET['per_page'])?$_GET['per_page']:8;
+                        $current_page = !empty($_GET['page'])?$_GET['page']:1;
+                        $offset = ($current_page - 1) * $item_per_page;
+                        $numrow = rowCount("SELECT * FROM sanpham");
+                        $totalpage = ceil($numrow / $item_per_page);
+                        foreach (selectAll("SELECT * FROM sanpham ORDER BY sldaban DESC LIMIT $item_per_page OFFSET $offset ") as $row) {
                       ?>
                           <tr class="addfont">
                               <td>
                                 <?= $stt++ ?></td>
                               <td>
-                                <img src="<?= empty($rows['anh'])?'../img/account/user.png':'../img/account/'.$rows['anh'].'' ?>" alt="image">
-                                <span><?= $rows['hoten'] ?></span>
+                                <span><?= $row['ten'] ?></span>
                               </td>
                               <td>
-                                <?= $rows['taikhoan'] ?>
+                                <img src="<?= empty($row['anh1'])?'../img/product/phone.png':'../img/product/'.$row['anh1'].'' ?>" alt="image">
+                                <img src="<?= empty($row['anh2'])?'../img/product/phone.png':'../img/product/'.$row['anh2'].'' ?>" alt="image">
+                                <img src="<?= empty($row['anh3'])?'../img/product/phone.png':'../img/product/'.$row['anh3'].'' ?>" alt="image">
                               </td>
                               <td>
-                                <?= $rows['phanquyen'] == 1 ? 'Admin' : 'Khách hàng'?>
+                                <?= $row['sldaban'] ?>
                               </td>
                               <td>
-                                <?= $numrow ?>
+                                <?= $row['soluong'] ?>
                               </td>
                               <td>
-                                <?php 
-                              foreach (selectAll("SELECT * FROM donhang WHERE status=3 && id_taikhoan = $idtaikhoan1") as $item) {
-                              ?>
-                                <?= number_format($item['tongtien'])?>đ
-                              <?php
-                                  }
-                              ?>
+                                <?= 
+                                number_format($row['sldaban'] * $row['gia'])?>đ
                               </td>
                           </tr>
                       <?php
                           }
-                        }
                       ?>
                       </tbody>
                   </table>
