@@ -38,7 +38,10 @@
       .addfont{
         font-family: 'Arial';
       }
-      
+      .logo-img-admin{
+        height: 60px !important;
+        width: unset !important;
+      }
     </style>
   </head>
   <body>
@@ -46,7 +49,7 @@
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a class="sidebar-brand brand-logo" href="index.php"><img src="assets/images/logoz_mobile.png" alt="logo" /></a>
+          <a class="sidebar-brand brand-logo" href="index.php"><img class="logo-img-admin" src="assets/images/logoz_mobile_2.png" alt="logo"/></a>
           <a class="sidebar-brand brand-logo-mini" href="index.php"><img src="assets/images/logo-mini.png" alt="logo" /></a>
         </div>
         <ul class="nav ">

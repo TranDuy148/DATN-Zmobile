@@ -1,4 +1,4 @@
-<?php 
+<?php
     include 'header.php';
     if (isset($_COOKIE["user"])) {
         $user = $_COOKIE["user"];
@@ -6,51 +6,55 @@
             $permission = $row['phanquyen'];
         }
         if ($permission==1) {
-          switch ($_GET["action"]) {
-            case "update":
-              if (isset($_GET["id"])) {
-                if(rowCount("SELECT * FROM donhang WHERE id={$_GET['id']} && status=1 ")>0){
-                  selectall("UPDATE donhang SET status=2 WHERE id={$_GET["id"]} && status=1");
-                  header('location:cart.php?action');
-                }
-                else if(rowCount("SELECT * FROM donhang WHERE id={$_GET['id']} && status=2 ")>0){
-                  selectall("UPDATE donhang SET status=3 WHERE id={$_GET["id"]} && status=2");
-                  //tăng số lượng đã bán
-                  foreach (selectAll("SELECT * FROM ctdonhang WHERE id_donhang={$_GET['id']}") as $item){
-                    foreach (selectAll("SELECT * FROM sanpham WHERE id={$item['id_sanpham']}") as $row) {
-                      selectall("UPDATE sanpham SET sldaban=sldaban + {$item['soluong']} WHERE id={$row['id']} ");
-                      }
-                    }
-                  header('location:cart.php?action');
-                }
-                else if(rowCount("SELECT * FROM donhang WHERE id={$_GET['id']} && status=4 ")>0){
-                  selectall("DELETE FROM donhang WHERE id={$_GET['id']}");
-                  header('location:cart.php?action');
-                }
-              }
-            break;
-            case "delete":
-              if (isset($_GET["id"])) {
-                if(rowCount("SELECT * FROM donhang WHERE id={$_GET['id']} && status=1 ")>0){
-                  selectall("UPDATE donhang SET status=4 WHERE id={$_GET["id"]} ");
-                  header('location:cart.php?action');
-                }
-                else if(rowCount("SELECT * FROM donhang WHERE id={$_GET['id']} && status=2 ")>0){
-                  selectall("UPDATE donhang SET status=4 WHERE id={$_GET["id"]} ");
-                    //tăng số lượng
+          if(isset($_GET["action"])) {
+            switch ($_GET["action"]) {
+              case "update":
+                if (isset($_GET["id"])) {
+                  if(rowCount("SELECT * FROM donhang WHERE id={$_GET['id']} && status=1 ")>0){
+                    selectall("UPDATE donhang SET status=2 WHERE id={$_GET["id"]} && status=1");
+                    header('location:cart.php?action');
+                  }
+                  else if(rowCount("SELECT * FROM donhang WHERE id={$_GET['id']} && status=2 ")>0){
+                    selectall("UPDATE donhang SET status=3 WHERE id={$_GET["id"]} && status=2");
+                    //tăng số lượng đã bán
                     foreach (selectAll("SELECT * FROM ctdonhang WHERE id_donhang={$_GET['id']}") as $item){
                       foreach (selectAll("SELECT * FROM sanpham WHERE id={$item['id_sanpham']}") as $row) {
-                        selectall("UPDATE sanpham SET soluong=soluong + {$item['soluong']} WHERE id={$row['id']} ");
+                        selectall("UPDATE sanpham SET sldaban=sldaban + {$item['soluong']} WHERE id={$row['id']} ");
                         }
                       }
-                  header('location:cart.php?action');
+                    header('location:cart.php?action');
+                  }
+                  else if(rowCount("SELECT * FROM donhang WHERE id={$_GET['id']} && status=4 ")>0){
+                    selectall("DELETE FROM donhang WHERE id={$_GET['id']}");
+                    header('location:cart.php?action');
+                  }
                 }
-              }
-            break;
+              break;
+              case "delete":
+                if (isset($_GET["id"])) {
+                  if(rowCount("SELECT * FROM donhang WHERE id={$_GET['id']} && status=1 ")>0){
+                    selectall("UPDATE donhang SET status=4 WHERE id={$_GET["id"]} ");
+                    header('location:cart.php?action');
+                  }
+                  else if(rowCount("SELECT * FROM donhang WHERE id={$_GET['id']} && status=2 ")>0){
+                    selectall("UPDATE donhang SET status=4 WHERE id={$_GET["id"]} ");
+                      //tăng số lượng
+                      foreach (selectAll("SELECT * FROM ctdonhang WHERE id_donhang={$_GET['id']}") as $item){
+                        foreach (selectAll("SELECT * FROM sanpham WHERE id={$item['id_sanpham']}") as $row) {
+                          selectall("UPDATE sanpham SET soluong=soluong + {$item['soluong']} WHERE id={$row['id']} ");
+                          }
+                        }
+                    header('location:cart.php?action');
+                  }
+                }
+              break;
+            }
           }
             
             
             ?>
+
+
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
@@ -191,4 +195,8 @@
     }
  include 'footer.php';
  ?>
+ <script>
+  document.getElementById("warning").style.display="none";
+
+ </script>
 

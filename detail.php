@@ -352,10 +352,10 @@ if (isset($_GET["id"])) {
                                             ?>
                                             <div class="review_item reply d-flex">
                                                 <div>
-                                                    <img src="img/account/zlogo.png" alt="" >
+                                                    <img width="80px" src="img/account/zlogo.png" alt="" >
                                                 </div>
                                                 <div class="ml-2">
-                                                    <p class="font-weight-bold text-danger">Admin</p>
+                                                    <p class="font-weight-bold text-danger">Zmobile</p>
                                                     <span><?= $repcmt['noidung'] ?></span>
                                                 </div>
                                             </div>
