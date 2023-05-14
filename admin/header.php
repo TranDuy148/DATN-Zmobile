@@ -42,9 +42,12 @@
         height: 60px !important;
         width: unset !important;
       }
+      .white-back{
+        background-color: white !important;
+      }
     </style>
   </head>
-  <body>
+  <body >
     <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">

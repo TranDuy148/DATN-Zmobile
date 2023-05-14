@@ -17,8 +17,12 @@
         foreach (selectAll("SELECT * FROM donhang WHERE status =3 or status =2 or status =1") as $item2) {
             $tongtiendutinh += $item2['tongtien'];
         }
-        
+    
 ?>
+<style>
+  @import url('./assets/css/all.css');
+</style>
+
 <!-- partial -->
 <div class="main-panel">
           <div class="content-wrapper">
@@ -82,7 +86,7 @@
                 </div>
               </div>
 
-              <div class="col-12 grid-margin">
+              <div class="col-12 grid-margin" >
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title addfont">Sản Phẩm Bán Chạy</h4>

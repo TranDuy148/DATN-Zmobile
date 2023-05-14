@@ -13902,7 +13902,9 @@ input[type="button"].btn-block {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
-
+*{
+    background-color: white !important;
+}
 .custom-control {
     position: relative;
     z-index: 1;

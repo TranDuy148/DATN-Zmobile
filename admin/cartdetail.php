@@ -1,3 +1,9 @@
+<style>
+  @import url('./assets/css/all.css');
+  input{
+    color: black !important;
+  }
+</style>
 <?php 
     include 'header.php';
 
@@ -25,7 +31,6 @@
                     $taikhoan = $item3['taikhoan'];
                 }
             }
-            
         ?>
             <!-- partial -->
             <div class="main-panel">
@@ -39,12 +44,12 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                         <label for="exampleInputName1">ID Đơn Hàng</label>
-                                        <input type="text" name = "ten" value="<?= $id_donhang ?>" required class="form-control text-light" placeholder="Nhập họ và tên">
+                                        <input type="text" name = "ten" value="<?= $id_donhang?>" required class="form-control text-light">
                                         </div>
 
                                         <div class="form-group ">
                                         <label for="exampleInputName1">Tổng Tiền</label>
-                                        <input type="text" name ="email" value="<?= number_format($tongtien)?>đ" required class="form-control text-light" placeholder="Nhập email">
+                                        <input type="text" name ="email" value="<?= number_format($tongtien)?>đ" required class="form-control text-light">
                                         </div>
                                         
                                         <div class="form-group ">

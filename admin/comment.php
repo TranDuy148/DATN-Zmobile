@@ -1,3 +1,6 @@
+<style>
+  @import url('./assets/css/all.css');
+</style>
 <?php 
     include 'header.php';
     if (isset($_COOKIE["user"])) {

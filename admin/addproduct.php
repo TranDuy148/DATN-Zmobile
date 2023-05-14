@@ -1,3 +1,6 @@
+<style>
+  @import url('./assets/css/all.css');
+</style>
 <?php 
     include 'header.php';
     // include '../connect.php';
@@ -35,7 +38,7 @@
                 move_uploaded_file($tmp2, $dir . $anh2);
                 move_uploaded_file($tmp3, $dir . $anh3);
                 
-                selectAll("INSERT INTO sanpham VALUES(NULL,$id_danhmuc,'$ten','$manhinh','$hedieuhanh','$cpu','$camera',$pin,$ram,'$bonho',$gia,'$anh1','$anh2','$anh3','$chitiet','$mota',0,0,10)");
+                selectAll("INSERT INTO sanpham VALUES(NULL,$id_danhmuc,1,'$ten','$manhinh','$hedieuhanh','$cpu','$camera',$pin,$ram,'$bonho',$gia,'$anh1','$anh2','$anh3','$chitiet','$mota',0,0,$soluong,1)");
                 header('location:product.php');
             }
         ?>

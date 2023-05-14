@@ -122,7 +122,6 @@
                                     <img src="img/product/<?= $row['anh1'] ?>" alt="" style="width:50px; height:50px;"/>
                                     </div>
                                     <div class="media-body">
-                                    
                                                 <p><?= $row['ten'] ?></p>
                                             <?php
                                         }

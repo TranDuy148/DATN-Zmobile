@@ -141,6 +141,10 @@
             <?php
         }
     }
+  
  include 'footer.php';
  ?>
+ <style>
+  @import url('./assets/css/all.css');
+</style>
 
